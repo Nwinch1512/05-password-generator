@@ -12,7 +12,7 @@
 // Numeric
 // Special characters ($@%&*, etc)
 // R5. Code should validate for each input and at least one character type should be selected
-// NW. Set up password generator function.  This will select characters from each array.  This will take in length as a parameter.  Four arrays will be passed into the function as parameters (one for each character type).  Need to split user defined length between four arrays to ensure equal number of characters selected from each.  Include scale variable to translate user length into the number of elements needed from each array. Function will output password as a variable.
+// NW. Set up password generator function.  This will select characters from each array.  This will take in length as a parameter.  Four arrays will be passed into the function as parameters (one for each character type).  Could use the same function and call by passing different arrays into it.  Need to split user defined length between four arrays to ensure equal number of characters selected from each.  Include scale variable to translate user length into the number of elements needed from each array. Function will output password as a variable.
 // R6. Once prompts are answered then the password should be generated and displayed in an alert or written to the page
 // Store password as a variable.  Display password in alert window.
 
@@ -106,14 +106,49 @@ var upperCasedCharacters = [
   "Z",
 ];
 
+// Storing array lengths as variables to determine parameters of random number generator.  Maybe remove later to make code more efficient.
+let specialCharactersLength = specialCharacters.length;
+let numericCharactersLength = numericCharacters.length;
+let lowerCasedCharactersLength = lowerCasedCharacters.length;
+let upperCasedCharactersLength = upperCasedCharacters.length;
+
+//Setting up random number generator to select one character from array
+function randomNumber(array) {
+  return Math.trunc(Math.random() * array.length);
+}
+
+//Storing random numbers as variables within range(dertermined by array length) of each array.  This will provide a starting position for extracting a character for the password generator.  Tested that random numbers are generating correctly.
+let specialCharactersRandomNumber = randomNumber(specialCharacters);
+let numericCharactersRandomNumber = randomNumber(numericCharacters);
+let lowerCasedCharactersRandomNumber = randomNumber(lowerCasedCharacters);
+let upperCasedCharactersRandomNumber = randomNumber(upperCasedCharacters);
+
+// let randomNumber = Math.trunc(Math.random() * specialCharactersLength);
+// console.log(randomNumber);
+// console.log(specialCharacters[22]);
+
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
 // Function for getting a random element from an array
-function getRandom(arr) {}
+function getRandom(arr) {
+  for (let i = 0; i < 2; i++) {
+    let randomChar = arr[i];
+    console.log(randomChar);
+  }
+}
+
+//Calling function with first array
+getRandom(specialCharacters);
 
 // Function to generate password with user input
-function generatePassword() {}
+//Setting up password prompt.  Need to add btn event listener.
+function generatePassword() {
+  let passwordLength = prompt(
+    "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64."
+  );
+  console.log(passwordLength);
+}
 
 // Get references to the #generate element
 var generateBtn = document.querySelector("#generate");
