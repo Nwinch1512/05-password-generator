@@ -126,16 +126,21 @@ let upperCasedCharactersRandomNumber = randomNumber(upperCasedCharacters);
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
-// Set up function to get one random element from an array
+// Set up function to get one random element from an array.  Need to adjust how many iterations loop makes based on user defined length later.
 function getRandom(arr, arrStartPosition) {
   for (let i = arrStartPosition; i < arrStartPosition + 1; i++) {
-    let randomChar = arr[i];
-    console.log(randomChar);
+    return arr[i];
+    // console.log(randomChar);
   }
 }
 
-//Calling function with first array
-getRandom(specialCharacters, specialCharactersRandomNumber);
+//Calling function with first array and setting up first character
+let char1 = getRandom(specialCharacters, specialCharactersRandomNumber);
+let char2 = getRandom(numericCharacters, numericCharactersRandomNumber);
+let char3 = getRandom(lowerCasedCharacters, lowerCasedCharactersRandomNumber);
+let char4 = getRandom(upperCasedCharacters, upperCasedCharactersRandomNumber);
+
+console.log(char1 + char2 + char3 + char4);
 
 // Function to generate password with user input
 //Setting up password prompt.  Need to add btn event listener.
