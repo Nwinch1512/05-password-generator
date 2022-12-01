@@ -118,37 +118,31 @@ function randomNumber(array) {
 }
 
 //Storing random numbers as variables within range(dertermined by array length) of each array.  This will provide a starting position for extracting a character for the password generator.  Tested that random numbers are generating correctly.
-let specialCharactersRandomNumber = randomNumber(specialCharacters);
-let numericCharactersRandomNumber = randomNumber(numericCharacters);
-let lowerCasedCharactersRandomNumber = randomNumber(lowerCasedCharacters);
-let upperCasedCharactersRandomNumber = randomNumber(upperCasedCharacters);
 
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
 // Set up function to get one random element from an array.  Need to adjust how many iterations loop makes based on user defined length later.
-function getRandom(arr, arrStartPosition) {
-  for (let i = arrStartPosition; i < arrStartPosition + 1; i++) {
-    return arr[i];
-    // console.log(randomChar);
-  }
+function getRandomChar(arr) {
+  let randomCharIndex = randomNumber(arr);
+  return arr[randomCharIndex];
 }
 
-//Calling function with first array and setting up first character
-let char1 = getRandom(specialCharacters, specialCharactersRandomNumber);
-let char2 = getRandom(numericCharacters, numericCharactersRandomNumber);
-let char3 = getRandom(lowerCasedCharacters, lowerCasedCharactersRandomNumber);
-let char4 = getRandom(upperCasedCharacters, upperCasedCharactersRandomNumber);
+//Calling random number function with each array, extracting character from each and storing as a variable.
+let char1 = getRandomChar(specialCharacters);
+let char2 = getRandomChar(numericCharacters);
+let char3 = getRandomChar(lowerCasedCharacters);
+let char4 = getRandomChar(upperCasedCharacters);
 
 console.log(char1 + char2 + char3 + char4);
 
 // Function to generate password with user input
 //Setting up password prompt.  Need to add btn event listener.
 function generatePassword() {
-  let passwordLength = prompt(
-    "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64."
-  );
-  console.log(passwordLength);
+  // let passwordLength = prompt(
+  //   "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64."
+  // );
+  // console.log(passwordLength);
 }
 
 // Get references to the #generate element
