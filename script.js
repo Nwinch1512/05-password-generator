@@ -123,23 +123,19 @@ let numericCharactersRandomNumber = randomNumber(numericCharacters);
 let lowerCasedCharactersRandomNumber = randomNumber(lowerCasedCharacters);
 let upperCasedCharactersRandomNumber = randomNumber(upperCasedCharacters);
 
-// let randomNumber = Math.trunc(Math.random() * specialCharactersLength);
-// console.log(randomNumber);
-// console.log(specialCharacters[22]);
-
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
-// Function for getting a random element from an array
-function getRandom(arr) {
-  for (let i = 0; i < 2; i++) {
+// Set up function to get one random element from an array
+function getRandom(arr, arrStartPosition) {
+  for (let i = arrStartPosition; i < arrStartPosition + 1; i++) {
     let randomChar = arr[i];
     console.log(randomChar);
   }
 }
 
 //Calling function with first array
-getRandom(specialCharacters);
+getRandom(specialCharacters, specialCharactersRandomNumber);
 
 // Function to generate password with user input
 //Setting up password prompt.  Need to add btn event listener.
