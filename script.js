@@ -146,6 +146,13 @@ function generatePassword() {
     "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64.",
     10
   );
+  if (passwordLength < 10 || passwordLength > 64 || passwordLength === null) {
+    passwordLength = 10;
+    alert(
+      "Your password length needs to be between 10 and 64 characters long. We have set your password to 10 characters as a default.  If you would like this to be longer, please click the 'generate password' button to try again"
+    );
+  }
+  // Set up user character selection prompts as function which only runs when password length correct
   let specialCharacterSelection = prompt(
     "Would you like to include special characters in your selection?\nPlease enter 'yes' or 'no'."
   );
@@ -156,13 +163,51 @@ function generatePassword() {
     "Would you like to include lower case characters in your selection?\nPlease enter 'yes' or 'no'."
   );
   let upperCasedCharacterSelection = prompt(
-    "Would you like to include lower case characters in your selection?\nPlease enter 'yes' or 'no'."
+    "Would you like to include upper case characters in your selection?\nPlease enter 'yes' or 'no'."
   );
-  //Check yes stored for at least one character array, if answered no to all, set up alert.
+  //Include function to format character selection.  Change all to lower case.
+  // if (
+  //   specialCharacterSelection !== "yes" &&
+  //   (numericCharacterSelection === "no" ||
+  //     numericCharacterSelection === null) &&
+  //   (lowerCasedCharacterSelection === "no" ||
+  //     lowerCasedCharacterSelection === null) &&
+  //   (upperCasedCharacterSelection === "no" ||
+  //     upperCasedCharacterSelection === null)
+  // ) {
+  //   alert(
+  //     "You MUST select at least one character type for your password.  Please click the 'generate password' button to try again."
+  //   );
+  // }
+
+  if (specialCharacterSelection === "yes") {
+    passwordArray.push(...specialCharacters);
+  }
+
+  if (numericCharacterSelection === "yes") {
+    passwordArray.push(...numericCharacters);
+  }
+
+  if (lowerCasedCharacterSelection === "yes") {
+    passwordArray.push(...lowerCasedCharacters);
+  }
+  if (upperCasedCharacterSelection === "yes") {
+    passwordArray.push(...upperCasedCharacters);
+  }
+
+  console.log(passwordArray);
+  if (passwordArray.length === 0) {
+    alert(
+      "You MUST select at least one character type for your password.  Please click the 'generate password' button to try again."
+    );
+  }
+
   // Check user password length valid.  This will then define how long we loop over array. If invalid throw error alert.
 
   // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
-
+  for (let i = 0; i < password.Array.length; i++) {
+    let char = getRandomChar(passwordArray);
+  }
   console.log(passwordLength);
   console.log(specialCharacterSelection);
   console.log(numericCharacterSelection);
