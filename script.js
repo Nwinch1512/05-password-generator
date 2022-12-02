@@ -138,11 +138,18 @@ console.log(char1 + char2 + char3 + char4);
 
 // Function to generate password with user input
 //Setting up password prompt.  Need to add btn event listener.
+
 function generatePassword() {
-  // let passwordLength = prompt(
-  //   "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64."
-  // );
-  // console.log(passwordLength);
+  // User defines password length
+  let passwordLength = prompt(
+    "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64.",
+    10
+  );
+  // Check user password length valid.  This will then define how long we loop over array. If invalid throw error alert.
+
+  // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
+
+  console.log(passwordLength);
 }
 
 // Get references to the #generate element
