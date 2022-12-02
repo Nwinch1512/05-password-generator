@@ -141,15 +141,33 @@ console.log(char1 + char2 + char3 + char4);
 
 function generatePassword() {
   // User defines password length
+  let passwordArray = [];
   let passwordLength = prompt(
     "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64.",
     10
   );
+  let specialCharacterSelection = prompt(
+    "Would you like to include special characters in your selection?\nPlease enter 'yes' or 'no'."
+  );
+  let numericCharacterSelection = prompt(
+    "Would you like to include numeric characters in your selection?\nPlease enter 'yes' or 'no'."
+  );
+  let lowerCasedCharacterSelection = prompt(
+    "Would you like to include lower case characters in your selection?\nPlease enter 'yes' or 'no'."
+  );
+  let upperCasedCharacterSelection = prompt(
+    "Would you like to include lower case characters in your selection?\nPlease enter 'yes' or 'no'."
+  );
+  //Check yes stored for at least one character array, if answered no to all, set up alert.
   // Check user password length valid.  This will then define how long we loop over array. If invalid throw error alert.
 
   // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
 
   console.log(passwordLength);
+  console.log(specialCharacterSelection);
+  console.log(numericCharacterSelection);
+  console.log(lowerCasedCharacterSelection);
+  console.log(upperCasedCharacterSelection);
 }
 
 // Get references to the #generate element
