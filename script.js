@@ -122,7 +122,7 @@ function randomNumber(array) {
 // Function to prompt user for password options
 function getPasswordOptions() {}
 
-// Set up function to get one random element from an array.  Need to adjust how many iterations loop makes based on user defined length later.
+// Set up function to get one random element from an array.
 function getRandomChar(arr) {
   let randomCharIndex = randomNumber(arr);
   return arr[randomCharIndex];
@@ -205,8 +205,12 @@ function generatePassword() {
   // Check user password length valid.  This will then define how long we loop over array. If invalid throw error alert.
 
   // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
-  for (let i = 0; i < password.Array.length; i++) {
-    let char = getRandomChar(passwordArray);
+  let randomCharacter = "";
+  let password = "";
+  for (i = 0; i < passwordLength; i++) {
+    randomCharacter = getRandomChar(passwordArray[i]);
+    password += randomCharacter;
+    console.log(password);
   }
   console.log(passwordLength);
   console.log(specialCharacterSelection);
