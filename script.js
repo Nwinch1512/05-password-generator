@@ -142,10 +142,17 @@ console.log(char1 + char2 + char3 + char4);
 function generatePassword() {
   // User defines password length
   let passwordArray = [];
-  let passwordLength = prompt(
+  let passwordLength = +prompt(
     "Please type how many characters you would like your password to be.  \nPasswords MUST be at least 10 characters but no more than 64.",
     10
   );
+  let type = typeof passwordLength;
+  console.log(type);
+  // if (typeof passwordLength !== number) {
+  //   alert(
+  //     "You did not enter a number, we have set your password to be 10 characters long as a default. Please click generated password again if you require a longer password."
+  //   );
+  // }
   if (passwordLength < 10 || passwordLength > 64 || passwordLength === null) {
     passwordLength = 10;
     alert(
