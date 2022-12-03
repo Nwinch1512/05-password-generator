@@ -153,17 +153,18 @@ function generatePassword() {
     );
   }
   // Set up user character selection prompts as function which only runs when password length correct
-  let specialCharacterSelection = prompt(
-    "Would you like to include special characters in your selection?\nPlease enter 'yes' or 'no'."
+  let specialCharacterSelection = confirm(
+    "Click OK to include special characters in your password."
   );
-  let numericCharacterSelection = prompt(
-    "Would you like to include numeric characters in your selection?\nPlease enter 'yes' or 'no'."
+  console.log(specialCharacterSelection);
+  let numericCharacterSelection = confirm(
+    "Click OK to include numeric characters in your password."
   );
-  let lowerCasedCharacterSelection = prompt(
-    "Would you like to include lower case characters in your selection?\nPlease enter 'yes' or 'no'."
+  let lowerCasedCharacterSelection = confirm(
+    "Click OK to include lower case characters in your password."
   );
-  let upperCasedCharacterSelection = prompt(
-    "Would you like to include upper case characters in your selection?\nPlease enter 'yes' or 'no'."
+  let upperCasedCharacterSelection = confirm(
+    "Click OK to include upper case characters in your password."
   );
   //Include function to format character selection.  Change all to lower case.
   // if (
@@ -180,18 +181,18 @@ function generatePassword() {
   //   );
   // }
 
-  if (specialCharacterSelection === "yes") {
+  if (specialCharacterSelection === true) {
     passwordArray.push(...specialCharacters);
   }
 
-  if (numericCharacterSelection === "yes") {
+  if (numericCharacterSelection === true) {
     passwordArray.push(...numericCharacters);
   }
 
-  if (lowerCasedCharacterSelection === "yes") {
+  if (lowerCasedCharacterSelection === true) {
     passwordArray.push(...lowerCasedCharacters);
   }
-  if (upperCasedCharacterSelection === "yes") {
+  if (upperCasedCharacterSelection === true) {
     passwordArray.push(...upperCasedCharacters);
   }
 
@@ -208,10 +209,11 @@ function generatePassword() {
   let randomCharacter = "";
   let password = "";
   for (i = 0; i < passwordLength; i++) {
-    randomCharacter = getRandomChar(passwordArray[i]);
+    randomCharacter = getRandomChar(passwordArray);
     password += randomCharacter;
-    console.log(password);
   }
+
+  console.log(password);
   console.log(passwordLength);
   console.log(specialCharacterSelection);
   console.log(numericCharacterSelection);
