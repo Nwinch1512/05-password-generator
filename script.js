@@ -127,40 +127,49 @@ function randomNumber(array) {
 // Function to prompt user for password options
 function getPasswordOptions() {
   // User defines password length
+  let userInputs = {
+    passwordLength: 0,
+    specialCharacterSelection: false,
+    numericCharacterSelection: false,
+    lowerCasedCharacterSelection: false,
+    upperCasedCharacterSelection: false,
+  };
 
-  let passwordLength = parseInt(
+  userInputs.passwordLength = parseInt(
     prompt(
       "Please type how many characters you would like your password to be.\nPasswords MUST be at least 10 characters but no more than 64."
     )
   );
 
-  if (isNaN(passwordLength)) {
+  if (isNaN(userInputs.passwordLength)) {
     alert(
       "You did not enter a number. Please click 'generate password' to try again."
     );
     return false;
   }
 
-  if (passwordLength < 10 || passwordLength > 64) {
+  if (userInputs.passwordLength < 10 || userInputs.passwordLength > 64) {
     alert(
       "Your password length needs to be between 10 and 64 characters long. Please click the 'generate password' button to try again"
     );
     return false;
   }
+
   // Set up user character selection prompts as function which only runs when password length correct
-  specialCharacterSelection = confirm(
+  userInputs.specialCharacterSelection = confirm(
     "Click OK to include special characters in your password."
   );
-  console.log(specialCharacterSelection);
-  numericCharacterSelection = confirm(
+  userInputs.numericCharacterSelection = confirm(
     "Click OK to include numeric characters in your password."
   );
-  lowerCasedCharacterSelection = confirm(
+  userInputs.lowerCasedCharacterSelection = confirm(
     "Click OK to include lower case characters in your password."
   );
-  upperCasedCharacterSelection = confirm(
+  userInputs.upperCasedCharacterSelection = confirm(
     "Click OK to include upper case characters in your password."
-  ); //return userInputs{passwordLength:,specialCharacterSelection:,numericCharacterSelection:,lowerCasedCharacterSelection:,upperCasedCharacterSelection:}
+  );
+
+  return userInputs;
 }
 
 // Set up function to get one random element from an array.
@@ -181,19 +190,20 @@ console.log(char1 + char2 + char3 + char4);
 //Setting up password prompt.  Need to add btn event listener.
 
 function generatePassword() {
-  getPasswordOptions();
-  if (specialCharacterSelection === true) {
+  let userInputs = getPasswordOptions();
+  console.log(userInputs);
+  if (userInputs.specialCharacterSelection === true) {
     passwordArray.push(...specialCharacters);
   }
 
-  if (numericCharacterSelection === true) {
+  if (userInputs.numericCharacterSelection === true) {
     passwordArray.push(...numericCharacters);
   }
 
-  if (lowerCasedCharacterSelection === true) {
+  if (userInputs.lowerCasedCharacterSelection === true) {
     passwordArray.push(...lowerCasedCharacters);
   }
-  if (upperCasedCharacterSelection === true) {
+  if (userInputs.upperCasedCharacterSelection === true) {
     passwordArray.push(...upperCasedCharacters);
   }
 
@@ -207,17 +217,12 @@ function generatePassword() {
   // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
   let randomCharacter = "";
   let password = "";
-  for (i = 0; i < passwordLength; i++) {
+  for (i = 0; i < userInputs.passwordLength; i++) {
     randomCharacter = getRandomChar(passwordArray);
     password += randomCharacter;
   }
 
   console.log(password);
-  console.log(passwordLength);
-  console.log(specialCharacterSelection);
-  console.log(numericCharacterSelection);
-  console.log(lowerCasedCharacterSelection);
-  console.log(upperCasedCharacterSelection);
 }
 
 // Get references to the #generate element
