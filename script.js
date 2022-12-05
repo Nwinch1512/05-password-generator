@@ -168,6 +168,18 @@ function getPasswordOptions() {
   userInputs.upperCasedCharacterSelection = confirm(
     "Click OK to include upper case characters in your password."
   );
+  console.log(passwordArray);
+  if (
+    userInputs.specialCharacterSelection === false &&
+    userInputs.numericCharacterSelection === false &&
+    userInputs.lowerCasedCharacterSelection === false &&
+    userInputs.upperCasedCharacterSelection === false
+  ) {
+    alert(
+      "You MUST select at least one character type for your password.  Please click the 'generate password' button to try again."
+    );
+    return false;
+  }
 
   return userInputs;
 }
@@ -207,13 +219,6 @@ function generatePassword() {
     passwordArray.push(...upperCasedCharacters);
   }
 
-  // console.log(passwordArray);
-  // if (passwordArray.length === 0) {
-  //   alert(
-  //     "You MUST select at least one character type for your password.  Please click the 'generate password' button to try again."
-  //   );
-  // }
-
   // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
   let randomCharacter = "";
   let password = "";
@@ -223,6 +228,7 @@ function generatePassword() {
   }
 
   console.log(password);
+  return password;
 }
 
 // Get references to the #generate element
