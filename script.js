@@ -88,12 +88,6 @@ var upperCasedCharacters = [
   "Z",
 ];
 
-let passwordArray = [];
-let specialCharacterSelection,
-  numericCharacterSelection,
-  lowerCasedCharacterSelection,
-  upperCasedCharacterSelection;
-
 //Setting up random number generator to select one character from array
 function randomNumber(array) {
   return Math.trunc(Math.random() * array.length);
@@ -170,14 +164,15 @@ function getPasswordOptions() {
 
 function generatePassword() {
   let userInputs = getPasswordOptions();
+  if (userInputs === false) return "";
+
+  let passwordArray = [];
   if (userInputs.specialCharacterSelection === true) {
     passwordArray.push(...specialCharacters);
   }
-
   if (userInputs.numericCharacterSelection === true) {
     passwordArray.push(...numericCharacters);
   }
-
   if (userInputs.lowerCasedCharacterSelection === true) {
     passwordArray.push(...lowerCasedCharacters);
   }
@@ -185,21 +180,15 @@ function generatePassword() {
     passwordArray.push(...upperCasedCharacters);
   }
 
-  // User decides which character types to include in password.  Store as Boolean value.  Based on user selection concatenate arrays.  Use random character function within loop to store a character each time.
+  // Use random character function within loop to store a character each time.
   let randomCharacter = "";
   let password = "";
   for (i = 0; i < userInputs.passwordLength; i++) {
     randomCharacter = getRandomChar(passwordArray);
     password += randomCharacter;
   }
-  clearPasswordArray();
   console.log(password);
   return password;
-}
-
-// Creating a function to clear password array for future password attempts
-function clearPasswordArray() {
-  passwordArray = [];
 }
 
 // Get references to the #generate element
