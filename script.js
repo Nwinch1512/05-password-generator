@@ -106,11 +106,6 @@ var upperCasedCharacters = [
   "Z",
 ];
 
-// Storing array lengths as variables to determine parameters of random number generator.  Maybe remove later to make code more efficient.
-let specialCharactersLength = specialCharacters.length;
-let numericCharactersLength = numericCharacters.length;
-let lowerCasedCharactersLength = lowerCasedCharacters.length;
-let upperCasedCharactersLength = upperCasedCharacters.length;
 let passwordArray = [];
 let specialCharacterSelection,
   numericCharacterSelection,
@@ -121,8 +116,6 @@ let specialCharacterSelection,
 function randomNumber(array) {
   return Math.trunc(Math.random() * array.length);
 }
-
-//Storing random numbers as variables within range(dertermined by array length) of each array.  This will provide a starting position for extracting a character for the password generator.  Tested that random numbers are generating correctly.
 
 // Function to prompt user for password options
 function getPasswordOptions() {
@@ -168,7 +161,7 @@ function getPasswordOptions() {
   userInputs.upperCasedCharacterSelection = confirm(
     "Click OK to include upper case characters in your password."
   );
-  console.log(passwordArray);
+
   if (
     userInputs.specialCharacterSelection === false &&
     userInputs.numericCharacterSelection === false &&
@@ -199,7 +192,7 @@ let char4 = getRandomChar(upperCasedCharacters);
 console.log(char1 + char2 + char3 + char4);
 
 // Function to generate password with user input
-//Setting up password prompt.  Need to add btn event listener.
+// Each character type array that is selected by the user is pushed into one password array.  This approach ensures the final password output is more randomised and unique than a password that would be produced by looping over individual arrays (since the likelihood of each character being selected is smaller than if characters were accessed via seperate arrays).  I considered splitting the arrays out into objects and looping over individual objects but decided that the benefits of a more randomised password outweighed the benefits of object looping approach.
 
 function generatePassword() {
   let userInputs = getPasswordOptions();
@@ -226,9 +219,14 @@ function generatePassword() {
     randomCharacter = getRandomChar(passwordArray);
     password += randomCharacter;
   }
-
+  clearPasswordArray();
   console.log(password);
   return password;
+}
+
+// Creating a function to clear password array for future password attempts
+function clearPasswordArray() {
+  passwordArray = [];
 }
 
 // Get references to the #generate element
@@ -238,7 +236,6 @@ var generateBtn = document.querySelector("#generate");
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
-
   passwordText.value = password;
 }
 
