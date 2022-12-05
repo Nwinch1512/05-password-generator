@@ -1,21 +1,3 @@
-// Notes on assignment requirements
-// R1. Generate a password when the button is clicked
-// NW.  Set up btn in html.  Bring into JS.  Add event listener that triggers password generator function.
-// R2. Present a series of prompts for password criteria
-// NW.  Set up prompts for user and store as variables in JS.  User to select length of password.
-// R3. Length of password:
-//  At least 10 characters but no more than 64.
-//NW. (length >= 10 && length <= 64)
-// R4. Character types:
-// Lowercase
-// Uppercase
-// Numeric
-// Special characters ($@%&*, etc)
-// R5. Code should validate for each input and at least one character type should be selected
-// NW. Set up password generator function.  This will select characters from each array.  This will take in length as a parameter.  Four arrays will be passed into the function as parameters (one for each character type).  Could use the same function and call by passing different arrays into it.  Need to split user defined length between four arrays to ensure equal number of characters selected from each.  Include scale variable to translate user length into the number of elements needed from each array. Function will output password as a variable.
-// R6. Once prompts are answered then the password should be generated and displayed in an alert or written to the page
-// Store password as a variable.  Display password in alert window.
-
 // Array of special characters to be included in password
 var specialCharacters = [
   "@",
@@ -117,9 +99,15 @@ function randomNumber(array) {
   return Math.trunc(Math.random() * array.length);
 }
 
+// Set up function to get one random element from an array.
+function getRandomChar(arr) {
+  let randomCharIndex = randomNumber(arr);
+  return arr[randomCharIndex];
+}
+
 // Function to prompt user for password options
 function getPasswordOptions() {
-  // User defines password length
+  // Creating object to store user inputs for later use.
   let userInputs = {
     passwordLength: 0,
     specialCharacterSelection: false,
@@ -127,7 +115,7 @@ function getPasswordOptions() {
     lowerCasedCharacterSelection: false,
     upperCasedCharacterSelection: false,
   };
-
+  // User inputs password length.  Using parseInt to change numerical input to number type, since prompts give string as default.
   userInputs.passwordLength = parseInt(
     prompt(
       "Please type how many characters you would like your password to be.\nPasswords MUST be at least 10 characters but no more than 64."
@@ -148,7 +136,7 @@ function getPasswordOptions() {
     return false;
   }
 
-  // Set up user character selection prompts as function which only runs when password length correct
+  // User selects which character types they want to include in their password
   userInputs.specialCharacterSelection = confirm(
     "Click OK to include special characters in your password."
   );
@@ -162,6 +150,7 @@ function getPasswordOptions() {
     "Click OK to include upper case characters in your password."
   );
 
+  // User must select at least one character type
   if (
     userInputs.specialCharacterSelection === false &&
     userInputs.numericCharacterSelection === false &&
@@ -173,30 +162,14 @@ function getPasswordOptions() {
     );
     return false;
   }
-
   return userInputs;
 }
-
-// Set up function to get one random element from an array.
-function getRandomChar(arr) {
-  let randomCharIndex = randomNumber(arr);
-  return arr[randomCharIndex];
-}
-
-//Calling random number function with each array, extracting character from each and storing as a variable.
-let char1 = getRandomChar(specialCharacters);
-let char2 = getRandomChar(numericCharacters);
-let char3 = getRandomChar(lowerCasedCharacters);
-let char4 = getRandomChar(upperCasedCharacters);
-
-console.log(char1 + char2 + char3 + char4);
 
 // Function to generate password with user input
 // Each character type array that is selected by the user is pushed into one password array.  This approach ensures the final password output is more randomised and unique than a password that would be produced by looping over individual arrays (since the likelihood of each character being selected is smaller than if characters were accessed via seperate arrays).  I considered splitting the arrays out into objects and looping over individual objects but decided that the benefits of a more randomised password outweighed the benefits of object looping approach.
 
 function generatePassword() {
   let userInputs = getPasswordOptions();
-  console.log(userInputs);
   if (userInputs.specialCharacterSelection === true) {
     passwordArray.push(...specialCharacters);
   }
