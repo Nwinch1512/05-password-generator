@@ -104,10 +104,10 @@ function getPasswordOptions() {
   // Creating object to store user inputs for later use.
   let userInputs = {
     passwordLength: 0,
-    specialCharacterSelection: false,
-    numericCharacterSelection: false,
     lowerCasedCharacterSelection: false,
     upperCasedCharacterSelection: false,
+    numericCharacterSelection: false,
+    specialCharacterSelection: false,
   };
   // User inputs password length.  Using parseInt to change numerical input to number type, since prompts give string as default.
   userInputs.passwordLength = parseInt(
@@ -131,25 +131,25 @@ function getPasswordOptions() {
   }
 
   // User selects which character types they want to include in their password
-  userInputs.specialCharacterSelection = confirm(
-    "Click OK to include special characters in your password."
-  );
-  userInputs.numericCharacterSelection = confirm(
-    "Click OK to include numeric characters in your password."
-  );
   userInputs.lowerCasedCharacterSelection = confirm(
     "Click OK to include lower case characters in your password."
   );
   userInputs.upperCasedCharacterSelection = confirm(
     "Click OK to include upper case characters in your password."
   );
+  userInputs.numericCharacterSelection = confirm(
+    "Click OK to include numeric characters in your password."
+  );
+  userInputs.specialCharacterSelection = confirm(
+    "Click OK to include special characters in your password."
+  );
 
   // User must select at least one character type
   if (
-    userInputs.specialCharacterSelection === false &&
-    userInputs.numericCharacterSelection === false &&
     userInputs.lowerCasedCharacterSelection === false &&
-    userInputs.upperCasedCharacterSelection === false
+    userInputs.upperCasedCharacterSelection === false &&
+    userInputs.numericCharacterSelection === false &&
+    userInputs.specialCharacterSelection === false
   ) {
     alert(
       "You MUST select at least one character type for your password.  Please click the 'generate password' button to try again."
@@ -160,7 +160,7 @@ function getPasswordOptions() {
 }
 
 // Function to generate password with user input
-// Each character type array that is selected by the user is pushed into one password array.  This approach ensures the final password output is more randomised and unique than a password that would be produced by looping over individual arrays (since the likelihood of each character being selected is smaller than if characters were accessed via seperate arrays).  I considered splitting the arrays out into objects and looping over individual objects but decided that the benefits of a more randomised password outweighed the benefits of object looping approach.
+// Each character type array that is selected by the user is pushed into one password array.  This approach ensures the final password output is more randomised and unique than a password that would be produced by looping over individual arrays (since the likelihood of each character being selected is smaller than if characters were accessed via seperate arrays).  I considered splitting the arrays out into objects and looping over individual objects within one array but decided that the benefits of a more randomised password outweighed the benefits of object looping approach.
 
 function generatePassword() {
   let userInputs = getPasswordOptions();
