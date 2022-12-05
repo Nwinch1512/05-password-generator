@@ -17,7 +17,7 @@ Please see below for a screenshot of the website.
 
 Please refer to the link below to access the webpage:
 
-[Password Generator website](https://nwinch1512.github.io/Console-Finances/ "Visit Console Finances website")
+[Password Generator website](https://nwinch1512.github.io/05-password-generator/ "Visit Console Finances website")
 
 ## Credits
 
