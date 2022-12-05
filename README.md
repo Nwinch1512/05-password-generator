@@ -13,11 +13,11 @@ N/A
 This webpage has been set up to enable users to generate a password, in line with the week 5 assignment guidance. This would be useful for anyone that wanted to create a unique and randomised password.
 
 Please see below for a screenshot of the website.
-![Password Generator website](/Screenshot-of-console-finances-webpage-and-console-results.jpg)
+![Password Generator website](/Password-generator-screenshot.jpeg)
 
 Please refer to the link below to access the webpage:
 
-[Password Generator website](https://nwinch1512.github.io/Console-Finances/ "Visit Console Finances website")
+[Password Generator website](https://nwinch1512.github.io/05-password-generator/ "Visit Password Generator website")
 
 ## Credits
 
