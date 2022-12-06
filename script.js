@@ -156,36 +156,37 @@ function getPasswordOptions() {
     );
     return false;
   }
+
   return userInputs;
 }
 
 // Function to generate password with user input
-// Each character type array that is selected by the user is pushed into one password array.  This approach ensures the final password output is more randomised and unique than a password that would be produced by looping over individual arrays (since the likelihood of each character being selected is smaller than if characters were accessed via seperate arrays).  I considered splitting the arrays out into objects and looping over individual objects within one array but decided that the benefits of a more randomised password outweighed the benefits of object looping approach.
-
 function generatePassword() {
   let userInputs = getPasswordOptions();
   if (userInputs === false) return "";
-
-  let passwordArray = [];
-  if (userInputs.specialCharacterSelection === true) {
-    passwordArray.push(...specialCharacters);
-  }
-  if (userInputs.numericCharacterSelection === true) {
-    passwordArray.push(...numericCharacters);
-  }
+  let passwordComponents = [];
   if (userInputs.lowerCasedCharacterSelection === true) {
-    passwordArray.push(...lowerCasedCharacters);
+    passwordComponents.push(lowerCasedCharacters);
   }
   if (userInputs.upperCasedCharacterSelection === true) {
-    passwordArray.push(...upperCasedCharacters);
+    passwordComponents.push(upperCasedCharacters);
+  }
+  if (userInputs.numericCharacterSelection === true) {
+    passwordComponents.push(numericCharacters);
+  }
+  if (userInputs.specialCharacterSelection === true) {
+    passwordComponents.push(specialCharacters);
   }
 
-  // Use random character function within loop to store a character each time.
-  let randomCharacter = "";
   let password = "";
+  let passwordComponentsIndex = 0;
   for (i = 0; i < userInputs.passwordLength; i++) {
-    randomCharacter = getRandomChar(passwordArray);
-    password += randomCharacter;
+    password += getRandomChar(passwordComponents[passwordComponentsIndex]);
+
+    passwordComponentsIndex++;
+    if (passwordComponentsIndex == passwordComponents.length) {
+      passwordComponentsIndex = 0;
+    }
   }
   console.log(password);
   return password;
