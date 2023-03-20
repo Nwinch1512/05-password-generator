@@ -13,7 +13,7 @@ N/A
 This webpage has been set up to enable users to generate a password, in line with the week 5 assignment guidance. This would be useful for anyone that wanted to create a unique and randomised password.
 
 Please see below for a screenshot of the website.
-![Password Generator website](Password-generator-website-screenshot.jpeg)
+![Password Generator website](Password-generator-styled-screenshot.jpeg)
 
 Please refer to the link below to access the webpage:
 
